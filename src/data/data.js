@@ -15,7 +15,7 @@ export const projects = [
   {
     title: 'Project Title',
     description: 'Project description goes here',
-    image: '/project-image.jpg',
+    image: 'https://dummyimage.com/1200x600/000000/ffffff',
     github: 'https://github.com/yourusername/project',
     demo: 'https://project-demo.com',
   },

@@ -1,7 +1,9 @@
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { useTheme } from '../../context/themeContext';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { isDark } = useTheme();
 
   const socialLinks = [
     {
@@ -25,13 +27,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className='bg-gray-900 text-gray-400'>
+    <footer
+      className={`${isDark ? 'bg-gray-900 text-gray-400' : 'bg-white text-gray-600'} transition-colors duration-300`}
+    >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8'>
         <div className='flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0'>
-          {/* Copyright */}
           <div className='text-sm'>© {currentYear} Khoa Nguyen. All rights reserved.</div>
 
-          {/* Social Links */}
           <div className='flex space-x-6'>
             {socialLinks.map((link) => (
               <a

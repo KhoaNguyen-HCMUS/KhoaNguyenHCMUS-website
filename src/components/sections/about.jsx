@@ -1,10 +1,15 @@
 import { motion } from 'framer-motion';
+import { useTheme } from '../../context/themeContext';
 
 const About = () => {
+  const { isDark } = useTheme();
+
   return (
     <section
-      className='min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 to-gray-800'
       id='about'
+      className={`min-h-screen flex items-center justify-center ${
+        isDark ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-gray-100 to-white'
+      }`}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -14,12 +19,16 @@ const About = () => {
       >
         <img
           src='/Khoa.jpg'
-          alt='Khoa Nguyen'
+          alt='Profile'
           className='w-48 h-48 rounded-full mx-auto mb-8 border-4 border-blue-500'
         />
-        <h1 className='text-5xl font-bold mb-4 text-white'>Khoa Nguyen</h1>
-        <p className='text-xl text-gray-300 mb-6'>Frontend Developer</p>
-        <p className='text-gray-400 max-w-2xl mx-auto'>Student at HCMUS | React Developer | UI/UX Enthusiast</p>
+        <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+          Khoa Nguyen
+        </h1>
+        <p className={`text-xl md:text-2xl mb-6 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Frontend Developer</p>
+        <p className={`max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+          Student at HCMUS | React Developer | UI/UX Enthusiast
+        </p>
       </motion.div>
     </section>
   );

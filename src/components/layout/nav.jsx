@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
+import { FaSun, FaMoon } from 'react-icons/fa';
+import { useTheme } from '../../context/themeContext';
+import { Transition } from '@headlessui/react';
 
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const { isDark, setIsDark } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,42 +39,103 @@ const Nav = () => {
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+        isScrolled
+          ? isDark
+            ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg'
+            : 'bg-white/95 backdrop-blur-sm shadow-lg'
+          : 'bg-transparent'
       }`}
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16'>
           <div className='flex-shrink-0 flex items-center space-x-3'>
             <img src='/logo.svg' alt='Logo' className='h-8 w-auto' />
-            <span className='text-white font-bold text-xl'>Nguyễn Lê Hồ Anh Khoa</span>
+            <span className={`font-bold text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}>
+              Nguyễn Lê Hồ Anh Khoa
+            </span>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className='hidden md:block'>
-            <div className='ml-10 flex items-baseline space-x-8'>
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className='text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium
-                    transition-colors duration-300 hover:bg-gray-700/50'
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+          <div className='hidden md:flex items-center space-x-8'>
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className={`p-2 rounded-full transition-colors duration-300 cursor-pointer ${
+                isDark ? 'text-yellow-400 hover:bg-gray-700/50' : 'text-gray-600 hover:bg-gray-200/50'
+              }`}
+              aria-label='Toggle theme'
+            >
+              {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
+            </button>
+
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`px-3 py-2 rounded-md text-sm font-medium
+                  transition-colors duration-300 cursor-pointer 
+                  ${
+                    isDark
+                      ? 'text-gray-300 hover:text-white hover:bg-gray-700/50'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
+                  }`}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className='md:hidden'>
-            <button type='button' className='text-gray-400 hover:text-white focus:outline-none'>
-              <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
-                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16' />
-              </svg>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-md ${
+                isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <span className='sr-only'>Open menu</span>
+              {isOpen ? (
+                <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M6 18L18 6M6 6l12 12' />
+                </svg>
+              ) : (
+                <svg className='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+                  <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M4 6h16M4 12h16M4 18h16' />
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </div>
+
+      <Transition
+        show={isOpen}
+        enter='transition duration-100 ease-out'
+        enterFrom='transform scale-95 opacity-0'
+        enterTo='transform scale-100 opacity-100'
+        leave='transition duration-75 ease-out'
+        leaveFrom='transform scale-100 opacity-100'
+        leaveTo='transform scale-95 opacity-0'
+      >
+        <div className={`md:hidden ${isDark ? 'bg-gray-900' : 'bg-white'}`}>
+          <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => {
+                  scrollToSection(item.id);
+                  setIsOpen(false);
+                }}
+                className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium
+                  ${
+                    isDark
+                      ? 'text-gray-300 hover:text-white hover:bg-gray-700'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
+                  }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </Transition>
     </nav>
   );
 };
