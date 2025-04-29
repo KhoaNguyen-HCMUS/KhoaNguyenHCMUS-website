@@ -85,6 +85,15 @@ const Nav = () => {
 
           <div className='md:hidden'>
             <button
+              onClick={() => setIsDark(!isDark)}
+              className={`p-2 rounded-full transition-colors duration-300 cursor-pointer ${
+                isDark ? 'text-yellow-400 hover:bg-gray-700/50' : 'text-gray-600 hover:bg-gray-200/50'
+              }`}
+              aria-label='Toggle theme'
+            >
+              {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
+            </button>
+            <button
               onClick={() => setIsOpen(!isOpen)}
               className={`p-2 rounded-md ${
                 isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'
