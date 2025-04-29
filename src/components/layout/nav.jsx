@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Handle scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -12,10 +11,16 @@ const Nav = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll to section
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    if (sectionId === 'contact') {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth',
+      });
+    } else {
+      const element = document.getElementById(sectionId);
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const navItems = [
@@ -34,9 +39,9 @@ const Nav = () => {
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16'>
-          {/* Logo/Name */}
-          <div className='flex-shrink-0'>
-            <span className='text-white font-bold text-xl'>KN</span>
+          <div className='flex-shrink-0 flex items-center space-x-3'>
+            <img src='/logo.svg' alt='Logo' className='h-8 w-auto' />
+            <span className='text-white font-bold text-xl'>Nguyễn Lê Hồ Anh Khoa</span>
           </div>
 
           {/* Desktop Navigation */}
