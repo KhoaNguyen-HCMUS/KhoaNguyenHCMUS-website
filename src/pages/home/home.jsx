@@ -1,4 +1,4 @@
-import { experiences, projects, awards } from '../../data/data.js';
+import { experiences, projects, awards, certificates } from '../../data/data.js';
 import About from '../../components/sections/about';
 import Experience from '../../components/sections/experience';
 import Project from '../../components/sections/project.jsx';
@@ -10,7 +10,7 @@ const Home = () => {
       <About />
       <Experience experiences={experiences} />
       <Project projects={projects} />
-      <Award awards={awards} />
+      <Award awards={awards} certificates={certificates} />
     </>
   );
 };

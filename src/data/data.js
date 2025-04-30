@@ -58,8 +58,40 @@ export const projects = [
 
 export const awards = [
   {
-    title: 'Award Title',
-    date: '2023',
-    description: 'Award description goes here',
+    title: 'Academic Excellence Scholarship HCMUS',
+    date: '2024',
+    description:
+      'Awarded by HCMUS for outstanding academic performance and maintaining a high GPA throughout the semester.',
+  },
+];
+
+export const certificates = [
+  {
+    title: 'HackerRank Frontend Developer (React) Certificate',
+    date: '2024',
+    description:
+      'Demonstrated proficiency in React, including components, state management, hooks, and modern frontend development practices.',
+    link: 'https://www.hackerrank.com/certificates/2d780a0bbde7',
+  },
+  {
+    title: 'CS50 Introduction to Databases',
+    date: '2024',
+    description:
+      'Comprehensive course covering database design, SQL, optimization, and best practices for building efficient database systems.',
+    link: 'https://certificates.cs50.io/a9239cbf-66d6-47ca-9ce1-92b70f60fba6.pdf?size=letter',
+  },
+  {
+    title: 'Coursera Data Structures',
+    date: '2024',
+    description:
+      'Mastered fundamental data structures including arrays, linked lists, trees, and hash tables, with implementation in practical scenarios.',
+    link: 'https://coursera.org/share/df19b2e703d63cede626ecc40e00c682',
+  },
+  {
+    title: 'Coursera Algorithmic Toolbox',
+    date: '2024',
+    description:
+      'Developed skills in algorithm design and analysis, covering sorting, searching, and optimization techniques for solving complex computational problems.',
+    link: 'https://coursera.org/share/61c677a7d56752b1b58c3c1999668c75',
   },
 ];
