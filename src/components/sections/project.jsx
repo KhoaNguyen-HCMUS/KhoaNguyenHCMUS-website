@@ -8,7 +8,7 @@ const Project = ({ projects }) => {
   const theme = isDark ? COLORS.dark : COLORS.light;
 
   return (
-    <section className='py-20' style={{ backgroundColor: theme.primary }}>
+    <section className='py-20' style={{ backgroundColor: theme.primary }} id='projects'>
       <div className='max-w-6xl mx-auto px-4'>
         <h2 className='text-3xl font-bold mb-12 text-center' style={{ color: theme.text.primary }}>
           Projects
