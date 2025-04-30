@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from '../../context/themeContext';
 import { Transition } from '@headlessui/react';
+import { COLORS } from '../../styles/colors';
 
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { isDark, setIsDark } = useTheme();
+  const theme = isDark ? COLORS.dark : COLORS.light;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,19 +40,18 @@ const Nav = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled
-          ? isDark
-            ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg'
-            : 'bg-white/95 backdrop-blur-sm shadow-lg'
-          : 'bg-transparent'
-      }`}
+      className='fixed top-0 w-full z-50 transition-all duration-300'
+      style={{
+        backgroundColor: isScrolled ? (isDark ? 'rgba(15, 23, 42, 0.95)' : 'rgba(255, 255, 255, 0.95)') : 'transparent',
+        backdropFilter: isScrolled ? 'blur(8px)' : 'none',
+        boxShadow: isScrolled ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none',
+      }}
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16'>
           <div className='flex-shrink-0 flex items-center space-x-3'>
             <img src='/logo.svg' alt='Logo' className='h-8 w-auto' />
-            <span className={`font-bold text-xl ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            <span style={{ color: theme.text.primary }} className='font-bold text-xl'>
               Nguyễn Lê Hồ Anh Khoa
             </span>
           </div>
@@ -70,13 +71,14 @@ const Nav = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-3 py-2 rounded-md text-sm font-medium
-                  transition-colors duration-300 cursor-pointer 
-                  ${
-                    isDark
-                      ? 'text-gray-300 hover:text-white hover:bg-gray-700/50'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/50'
-                  }`}
+                className='px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300 cursor-pointer'
+                style={{
+                  color: theme.text.secondary,
+                  ':hover': {
+                    color: theme.text.primary,
+                    backgroundColor: isDark ? 'rgba(55, 65, 81, 0.5)' : 'rgba(229, 231, 235, 0.5)',
+                  },
+                }}
               >
                 {item.label}
               </button>
@@ -95,9 +97,8 @@ const Nav = () => {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2 rounded-md ${
-                isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-gray-900'
-              }`}
+              style={{ color: theme.text.secondary }}
+              className='p-2 rounded-md'
             >
               <span className='sr-only'>Open menu</span>
               {isOpen ? (

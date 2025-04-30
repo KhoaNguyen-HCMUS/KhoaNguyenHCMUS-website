@@ -7,24 +7,46 @@ const About = () => {
   return (
     <section
       id='about'
-      className='min-h-screen flex items-center justify-center relative overflow-hidden gradient-animate'
+      className={`min-h-screen flex items-center justify-center px-6 py-16 relative overflow-hidden ${
+        isDark
+          ? 'bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#be185d]'
+          : 'bg-gradient-to-br from-[#dbeafe] via-white to-[#fbcfe8]'
+      }`}
     >
-      <div className='absolute inset-0 bg-black opacity-10'></div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className='text-center px-4'
-      >
-        <img src='/Khoa.jpg' alt='Profile' className='w-48 h-48 rounded-full mx-auto mb-8 border-4 border-blue-500' />
-        <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
-          Khoa Nguyen
-        </h1>
-        <p className={`text-xl md:text-2xl mb-6 ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>Frontend Developer</p>
-        <p className={`max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-          Student at HCMUS | React Developer | UI/UX Enthusiast
-        </p>
-      </motion.div>
+      {/* Nội dung chính */}
+      <div className='max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-12 z-10 items-center'>
+        {/* Ảnh đại diện */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className='flex justify-center'
+        >
+          <img
+            src='/Khoa.jpg'
+            alt='Profile'
+            className='w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl shadow-xl border-4 border-blue-500'
+          />
+        </motion.div>
+
+        {/* Thông tin */}
+        <motion.div
+          initial={{ opacity: 0, x: -40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className='text-center md:text-left'
+        >
+          <h1 className={`text-4xl md:text-5xl font-extrabold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+            Nguyen Le Ho Anh Khoa
+          </h1>
+          <p className={`text-xl md:text-2xl font-medium mb-4 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
+            Frontend Developer
+          </p>
+          <p className={`text-base md:text-lg ${isDark ? 'text-gray-400' : 'text-gray-600'} max-w-xl`}>
+            Student at HCMUS · React Developer · UI/UX Enthusiast
+          </p>
+        </motion.div>
+      </div>
     </section>
   );
 };

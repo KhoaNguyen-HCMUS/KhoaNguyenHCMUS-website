@@ -1,18 +1,15 @@
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import { useTheme } from '../../context/themeContext';
+import { COLORS } from '../../styles/colors';
 
 const Award = ({ awards }) => {
   const { isDark } = useTheme();
+  const theme = isDark ? COLORS.dark : COLORS.light;
   return (
-    <section
-      className={`py-20 ${
-        isDark ? 'bg-gradient-to-b from-gray-900 to-gray-800' : 'bg-gradient-to-b from-gray-100 to-white'
-      }`}
-      id='awards'
-    >
+    <section className={`py-20`} style={{ backgroundColor: theme.primary }} id='awards'>
       <div className='max-w-6xl mx-auto px-4'>
-        <h2 className={`text-3xl font-bold ${isDark ? 'text-white' : 'text-gray-900'} mb-12 text-center`}>
+        <h2 className={`text-3xl font-bold mb-12 text-center`} style={{ color: theme.text.primary }}>
           Awards & Activities
         </h2>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
@@ -22,11 +19,16 @@ const Award = ({ awards }) => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className={`${isDark ? 'bg-gray-900' : 'bg-gray-300'} p-6 rounded-lg`}
+              className={`p-6 rounded-lg`}
+              style={{ backgroundColor: theme.secondary }}
             >
-              <h3 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>{award.title}</h3>
-              <p className='text-blue-400 mb-2'>{award.date}</p>
-              <p className={`${isDark ? 'text-gray-300' : 'text-gray-900'}`}>{award.description}</p>
+              <h3 className={`text-xl font-bold`} style={{ color: theme.text.primary }}>
+                {award.title}
+              </h3>
+              <p className={`mb-2`} style={{ color: theme.text.accent }}>
+                {award.date}
+              </p>
+              <p style={{ color: theme.text.secondary }}>{award.description}</p>
             </motion.div>
           ))}
         </div>
