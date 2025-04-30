@@ -32,15 +32,17 @@ const Project = ({ projects }) => {
                   {project.description}
                 </p>
                 <div className='flex gap-4'>
-                  <a
-                    href={project.github}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    style={{ color: theme.text.accent }}
-                    className='hover:opacity-80 transition-opacity'
-                  >
-                    GitHub
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      style={{ color: theme.text.accent }}
+                      className='hover:opacity-80 transition-opacity'
+                    >
+                      GitHub
+                    </a>
+                  )}
                   {project.demo && (
                     <a
                       href={project.demo}
