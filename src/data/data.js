@@ -1,7 +1,7 @@
-import bookstoreImage from '../assets/images/projects/bookstore.png';
-import HyperFramesImage from '../assets/images/projects/hyperFrames.png';
-import cs50DatabaseImage from '../assets/images/projects/diagram.png';
-import foodOrderImage from '../assets/images/projects/foodOrderMobileApp.png';
+import bookstoreImage from '/images/projects/bookstore.png';
+import HyperFramesImage from '/images/projects/hyperFrames.png';
+import cs50DatabaseImage from '/images/projects/diagram.png';
+import foodOrderImage from '/images/projects/foodOrderMobileApp.png';
 export const experiences = [
   {
     company: 'HTcamera',
