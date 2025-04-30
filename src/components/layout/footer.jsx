@@ -42,7 +42,6 @@ const Footer = () => {
     <footer style={{ backgroundColor: theme.primary }} className='pt-12 pb-6'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-8'>
-          {/* Contact Information */}
           <div>
             <h3 className='text-lg font-semibold mb-4' style={{ color: theme.text.primary }}>
               Contact Information
@@ -67,7 +66,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Logo and Copyright */}
           <div className='flex flex-col items-center md:items-end'>
             <img src='/logo.svg' alt='Logo' className='h-12 w-auto mb-4' />
             <div className='text-sm' style={{ color: theme.text.secondary }}>
@@ -76,7 +74,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Social Links */}
         <div className='pt-8 mt-8 border-t flex justify-center space-x-6' style={{ borderColor: theme.text.secondary }}>
           {contactInfo.map((link) => (
             <a
