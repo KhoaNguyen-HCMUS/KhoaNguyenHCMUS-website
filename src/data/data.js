@@ -1,5 +1,5 @@
 import bookstoreImage from '../assets/images/projects/bookstore.png';
-import HyperFramesImage from '../assets/images/projects/HyperFrames.png';
+import HyperFramesImage from '../assets/images/projects/hyperFrames.png';
 import cs50DatabaseImage from '../assets/images/projects/diagram.png';
 import foodOrderImage from '../assets/images/projects/foodOrderMobileApp.png';
 export const experiences = [
